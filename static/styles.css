@@ -1,0 +1,407 @@
+:root {
+    --primary-color: #666666;
+    --primary-hover: #555555;
+    --success-color: #666666;
+    --error-color: #666666;
+    --warning-color: #666666;
+    --bg-color: #ffffff;
+    --surface-color: #ffffff;
+    --border-color: #cccccc;
+    --text-primary: #666666;
+    --text-secondary: #999999;
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --radius: 0.25rem;
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.status-indicator {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.status-checking {
+    color: var(--text-secondary);
+}
+
+.status-connected {
+    color: #22c55e;
+    font-weight: 500;
+}
+
+.status-disconnected {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.status-error {
+    color: #ef4444;
+    font-weight: 500;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.loki-url {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loki-api-code {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.copy-btn:hover {
+    background: var(--text-secondary);
+    color: white;
+}
+
+.copy-btn-inline {
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    border-radius: 0.2rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+    margin-left: 0.25rem;
+}
+
+.copy-btn-inline:hover {
+    background: var(--text-secondary);
+    color: white;
+}
+
+.nav-links span {
+    margin-right: 0;
+}
+
+.main-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.section {
+    background: var(--surface-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea,
+.form-file {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--surface-color);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-file:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.form-file {
+    padding: 1rem;
+    border-style: dashed;
+    cursor: pointer;
+}
+
+.form-file:hover {
+    border-color: var(--primary-color);
+    background-color: #f8faff;
+}
+
+.form-hint {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    max-width: 200px;
+    color: var(--primary-color);
+}
+
+.btn-primary {
+    border-color: var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    background-color: var(--primary-hover);
+    color: white;
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-text {
+    transition: var(--transition);
+}
+
+.btn:disabled .btn-text {
+    opacity: 0;
+}
+
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.btn .spinner {
+    position: absolute;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.result-container {
+    margin-top: 1rem;
+}
+
+.result-box {
+    padding: 1rem;
+    border-radius: var(--radius);
+    border: 1px solid;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.result-success {
+    background-color: #f9f9f9;
+    border-color: #cccccc;
+    color: var(--text-primary);
+}
+
+.result-error {
+    background-color: #f9f9f9;
+    border-color: #cccccc;
+    color: var(--text-primary);
+}
+
+.info-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #cccccc;
+    border-radius: var(--radius);
+    color: var(--text-primary);
+}
+
+.info-box strong {
+    color: var(--text-primary);
+}
+
+.info-box code {
+    background: #eeeeee;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--text-primary);
+}
+
+.status-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.status-label {
+    font-weight: 500;
+}
+
+.status-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.status-running {
+    color: var(--text-primary);
+}
+
+.back-link {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.loki-api-section {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .section {
+        padding: 1.5rem;
+    }
+}

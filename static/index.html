@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Importer for Loki</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Loki Import</h1>
+            <nav class="nav-links">
+                <a href="http://localhost:3001/a/grafana-lokiexplore-app/explore?patterns=%5B%5D&from=now-15m&to=now&timezone=browser&var-lineFormat=&var-ds=P8E80F9AEF21F6940&var-filters=&var-fields=&var-levels=&var-metadata=&var-jsonFields=&var-all-fields=&var-patterns=&var-lineFilterV2=&var-lineFilters=&var-primary_label=service_name%7C%3D~%7C.%2B" target="_blank" class="nav-link">Grafana logs</a>
+                <div class="loki-api-section">
+                    <span>Loki API:</span>
+                    <code class="loki-api-code">
+                        localhost:3100
+                        <button class="copy-btn-inline" onclick="copyLokiUrl()" title="Copy">Copy</button>
+                    </code>
+                </div>
+                 <a href="https://grafana.com/docs/loki/latest/reference/loki-http-api/#query-endpoints" target="_blank" class="nav-link">Loki API Docs</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="info-box">
+                <strong>Required:</strong> Each log file must start with <code>service_name: your-service-name</code> as the first line.<br>
+                <strong>Example:</strong><br>
+                <code>service_name: webapp<br>
+                2024-06-24 10:00:01 INFO Application started<br>
+                2024-06-24 10:00:02 ERROR Database failed</code>
+            </div>
+
+            <section class="section">
+                <h2>Upload</h2>
+                <form id="fileForm" class="form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="files" class="form-label">Choose log file(s):</label>
+                        <input 
+                            type="file" 
+                            id="files" 
+                            name="files" 
+                            class="form-file" 
+                            multiple 
+                            accept=".log,.txt"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Upload files</span>
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                </form>
+                <div id="fileResult" class="result-container"></div>
+            </section>
+
+            <section class="section">
+                <h2>Send</h2>
+                <form id="pasteForm" class="form">
+                    <div class="form-group">
+                        <label for="logText" class="form-label">Log lines:</label>
+                        <textarea 
+                            id="logText" 
+                            name="logText" 
+                            class="form-textarea" 
+                            placeholder="service_name: my-app&#10;2024-06-24 10:00:01 INFO Application started&#10;2024-06-24 10:00:02 ERROR Database connection failed&#10;2024-06-24 10:00:03 WARN Retrying connection..."
+                            rows="8"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Paste logs</span>
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                </form>
+                <div id="pasteResult" class="result-container"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        function copyLokiUrl() {
+            navigator.clipboard.writeText('localhost:3100').then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = original;
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new LogImporter();
+        });
+    </script>
+</body>
+</html>

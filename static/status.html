@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Status - Log Importer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Import Status</h1>
+        </header>
+        
+        <main class="main-content">
+            <section class="section">
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">Service Status:</span>
+                        <span class="status-value status-running">Running</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Loki Connection:</span>
+                        <span class="status-value" id="lokiStatus">
+                            <div class="spinner"></div>
+                            Checking...
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="back-link">
+                    <a href="/" class="nav-link">← Back to Import</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lokiStatus = document.getElementById('lokiStatus');
+            lokiStatus.innerHTML = 'Unknown';
+            lokiStatus.className = 'status-value status-checking';
+        });
+    </script>
+</body>
+</html>
